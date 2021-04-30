@@ -1,0 +1,27 @@
+<style>
+    .modal-content{
+        background-color: #41424a;
+    }
+</style>
+
+<div class="modal fade" id="search_mem_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Search Member</h5>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{ url_for('search_member') }}" method = "POST">
+                <label for="Name">Name:</label>
+                <input class="form-control" id="Name" type = "text" name = "name">
+                <br>
+                <input class="btn btn-primary" type = "submit" value = "Search">
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

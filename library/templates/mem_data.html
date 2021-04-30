@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    Members
+{% endblock %}
+{% block content %}
+<div class="row container" style="margin-top: 20px; margin-left: 20px;">
+    <table class="table table-hover table-dark text-center">
+       <thead>
+          <tr>
+             <!-- Your Columns HERE -->
+             <th scope="col">ID</th>
+             <th scope="col">Name</th>
+             <th scope="col">Rent</th>
+       </thead>
+       <tbody>
+          <!-- Your rows inside the table HERE: -->
+          <tr>
+             <td>{{ mem.id }}</td>
+             <td>{{ mem.name }}</td>
+             <td>{{ mem.rent }}</td>
+          </tr>
+       </tbody>
+    </table>
+ </div>
+{% endblock %}

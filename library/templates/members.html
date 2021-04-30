@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}
+    Members
+{% endblock %}
+{% block content %}
+   <h1 class="text-center">Welcome to Members Database!</h1>
+   <p></p>
+   <div class="container">
+      <div class="row">
+         <div class="col md-12">
+            {% include 'includes/create_mem_modal.html' %}
+            {% include 'includes/search_mem_modal.html' %}
+            <div class="jumbotron p-3" style="background-color: #41424a; color: white">
+               <h2>Manage <b>Books</b> <button class="btn btn-info float-right" data-toggle="modal" data-target="#search_mem_modal">Search</button> <button class="btn btn-success float-right" style="margin-right: 5px;" data-toggle="modal" data-target="#create_mem_modal">Create</button></h2>
+               <table class="table table-hover table-dark text-center">
+                  <thead>
+                     <tr>
+                        <!-- Your Columns HERE -->
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Rent</th>
+                        <th scope="col">Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <!-- Your rows inside the table HERE: -->
+                     {% for mem in member %}
+                     <tr>
+                        <td>{{ mem.id }}</td>
+                        <td>{{ mem.name }}</td>
+                        <td>{{ mem.rent }}</td>
+                        <td>
+                           <a class="btn btn-warning btn-xs" href="/members/update/{{ mem.id }}" data-toggle="modal" data-target="#update_mem_modal-{{ mem.id }}">Update</a>
+                           <a class="btn btn-danger btn-xs" href="/member/delete/{{ mem.id }}" onclick="return confirm('Are you sure you want to Delete?')">Delete</a>
+                        </td>
+                     </tr>
+                     
+                     <!---Update_Modal--->
+                     <style>
+                        .modal-content{
+                            background-color: #41424a;
+                        }
+                    </style>
+                    
+                    <div class="modal fade" id="update_mem_modal-{{ mem.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Update Member</h5>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ url_for('update_member') }}" method = "POST">
+                                    <label for="Name">Name:</label>
+                                    <input type= "hidden"  name= "id" value= "{{ mem.id }}">
+                                    <input class="form-control" id="Name" type = "text" name = "name" value="{{ mem.name }}">
+                                    <br>
+                                    <label for="Rent">Rent:</label>
+                                    <input class="form-control" type = "text" id="Rent" name = "rent" value="{{ mem.rent }}">
+                                    <br>
+                                    <input class="btn btn-primary" type = "submit" value = "Submit">
+                                  </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

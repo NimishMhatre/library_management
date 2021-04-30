@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    Books
+{% endblock %}
+{% block content %}
+<div class="row container" style="margin-top: 20px; margin-left: 20px;">
+    <table class="table table-hover table-dark text-center">
+       <thead>
+          <tr>
+             <!-- Your Columns HERE -->
+             <th scope="col">ID</th>
+             <th scope="col">Name</th>
+             <th scope="col">Author</th>
+             <th scope="col">Fee</th>
+             <th scope="col">Count</th>
+          </tr>
+       </thead>
+       <tbody>
+          <!-- Your rows inside the table HERE: -->
+          <tr>
+             <td>{{ book.id }}</td>
+             <td>{{ book.name }}</td>
+             <td>{{ book.author }}</td>
+             <td>{{ book.fee }}</td>
+             <td>{{ book.count }}</td>
+          </tr>
+       </tbody>
+    </table>
+ </div>
+{% endblock %}
