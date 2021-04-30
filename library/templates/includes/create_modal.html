@@ -1,0 +1,36 @@
+<style>
+    .modal-content{
+        background-color: #41424a;
+    }
+</style>
+
+<div class="modal fade" id="createmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Book</h5>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{ url_for('create') }}" method = "POST">
+                <label for="Name">Name:</label>
+                <input class="form-control" id="Name" type = "text" name = "name">
+                <br>
+                <label for="Author">Author:</label>
+                <input class="form-control" type = "text" id="Author" name = "author">
+                <br>
+                <label for="Fee">Fee:</label>
+                <input class="form-control" type = "integer" id="Fee" name = "fee">
+                <br>
+                <label for="Count">Count:</label>
+                <input class="form-control" type = "integer" id="Count" name = "count">
+                <br>
+                <input class="btn btn-primary" type = "submit" value = "Submit">
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

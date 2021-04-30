@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}
+    Books
+{% endblock %}
+{% block content %}
+   <h1 class="text-center">Welcome to Books Database!</h1>
+   <p></p>
+   <div class="container">
+      <div class="row">
+         <div class="col md-12">
+            {% include 'includes/create_modal.html' %}
+            {% include 'includes/search_modal.html' %}
+            <div class="jumbotron p-3" style="background-color: #41424a; color: white">
+               <h2>Manage <b>Books</b> <button class="btn btn-info float-right" data-toggle="modal" data-target="#searchmodal">Search</button> <button class="btn btn-success float-right" style="margin-right: 5px;" data-toggle="modal" data-target="#createmodal">Create</button></h2>
+               <table class="table table-hover table-dark text-center">
+                  <thead>
+                     <tr>
+                        <!-- Your Columns HERE -->
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Fee</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <!-- Your rows inside the table HERE: -->
+                     {% for book in books %}
+                     <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.name }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.fee }}</td>
+                        <td>{{ book.count }}</td>
+                        <td>
+                           <a class="btn btn-warning btn-xs" href="/update/{{ book.id }}" data-toggle="modal" data-target="#updatemodal-{{ book.id }}">Update</a>
+                           <a class="btn btn-danger btn-xs" href="/delete/{{ book.id }}" onclick="return confirm('Are you sure you want to Delete?')">Delete</a>
+                        </td>
+                     </tr>
+                     
+                     <!---Update_Modal--->
+                     <style>
+                        .modal-content{
+                            background-color: #41424a;
+                        }
+                    </style>
+                    
+                    <div class="modal fade" id="updatemodal-{{ book.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Update Book</h5>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ url_for('update') }}" method = "POST">
+                                    <label for="Name">Name:</label>
+                                    <input type= "hidden"  name= "id" value= "{{ book.id }}">
+                                    <input class="form-control" id="Name" type = "text" name = "name" value="{{ book.name }}">
+                                    <br>
+                                    <label for="Author">Author:</label>
+                                    <input class="form-control" type = "text" id="Author" name = "author" value="{{ book.author }}">
+                                    <br>
+                                    <label for="Fee">Fee:</label>
+                                    <input class="form-control" type = "integer" id="Fee" name = "fee" value="{{ book.fee }}">
+                                    <br>
+                                    <label for="Count">Count:</label>
+                                    <input class="form-control" type = "integer" id="Count" name = "count" value="{{ book.count }}">
+                                    <br>
+                                    <input class="btn btn-primary" type = "submit" value = "Submit">
+                                  </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

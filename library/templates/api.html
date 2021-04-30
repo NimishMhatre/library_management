@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+    API
+{% endblock %}
+{% block content %}
+    <h1>Welcome to Library!</h1>
+    {% print(json_response) %}
+    <div class="container">
+        <div class="row">
+           <div class="col md-12">
+              <div class="jumbotron p-3" style="background-color: #41424a; color: white">
+                 <table class="table table-hover table-dark text-center">
+                    <thead>
+                       <tr>
+                          <!-- Your Columns HERE -->
+                          <th scope="col">ID</th>
+                          <th scope="col">Title</th>
+                          <th scope="col">Author</th>
+                          <th scope="col">isbn</th>
+                          <th scope="col">Publiser</th>
+                          <th scope="col">Pages</th>
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <!-- Your rows inside the table HERE: -->
+                       {% for i in json_response %}
+                       <tr>
+                          <td>{{ i.bookID }}</td>
+                          <td>{{ i.title }}</td>
+                          <td>{{ i.authors }}</td>
+                          <td>{{ i.isbn }}</td>
+                          <td>{{ i.publisher }}</td>
+                          <td>{{ i.num_pages }}</td>
+                       </tr>
+                       {% endfor %}
+                        <style>
+                          .modal-content{
+                              background-color: #41424a;
+                          }
+                        </style>
+                    </tbody>
+                 </table>
+              </div>
+           </div>
+        </div>
+     </div>
+{% endblock %}
